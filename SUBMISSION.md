@@ -1,19 +1,26 @@
 # SPACLY — GenLayer Points Portal Submission
 
-## Project Title & Network
-- **Project Title:** SPACLY (Intelligent Production Migration Acceptance Protocol)
-- **Network:** GenLayer StudioNet
-- **Chain ID:** `61999`
-- **Target Category:** Intelligent Contracts / Developer Infrastructure
+## 1. Submission Categories
+- **Primary Category:** Projects & Milestones (20-4000 pts)
+- **Primary Tag:** AI & Agents
+- **Sub-tags:** Workflow Automation, Protocol Experiment
 
-## Explorer Contract Link & Address
-- **Contract Address:** [`0x860De7Dc72128C1F2A7EF9d415761641B05C25Bb`](https://explorer-studio.genlayer.com/address/0x860De7Dc72128C1F2A7EF9d415761641B05C25Bb)
-- **Explorer Contract URL:** https://explorer-studio.genlayer.com/address/0x860De7Dc72128C1F2A7EF9d415761641B05C25Bb
+## 2. Contract Format
+
+#### Spacly
+
+**Title:** SPACLY - Intelligent Production Migration Acceptance Protocol
+**Description:**
+SPACLY is a decentralized production migration and release authorization protocol powered by GenLayer. It pairs objective deterministic probes (status codes, body hashes, origin checks) with non-deterministic GenLayer AI validator consensus to authorize migrations using a strict equivalence principle on categorical rules.
+
+- **Contract Address:** `0x860De7Dc72128C1F2A7EF9d415761641B05C25Bb`
+- **Explorer Link:** [View on GenLayer Studio](https://explorer-studio.genlayer.com/address/0x860De7Dc72128C1F2A7EF9d415761641B05C25Bb)
+- **Source Code:** [Link to GitHub](https://github.com/Dark-Brain07/spacly)
+
+## Deployment Details
+- **Network:** GenLayer StudioNet (Chain ID: `61999`)
 - **Deployment Transaction Hash:** [`0xd6633802dd36137b269e6db8d9d91b955474a67e13b6db31a32748408b7c6932`](https://explorer-studio.genlayer.com)
 - **Deployment Consensus Result:** `FINALIZED` (`MAJORITY_AGREE`, leader `SUCCESS`)
-
-## GitHub Repository Link
-- **Repository:** [Spacly (Local / GitHub)](https://github.com/Dark-Brain07/spacly)
 - **Main Contributor:** Dark-Brain07 (Single Primary Author & Contributor)
 
 ---

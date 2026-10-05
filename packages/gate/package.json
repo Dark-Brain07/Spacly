@@ -2,7 +2,7 @@
   "name": "@spacly/gate",
   "private": true,
   "version": "1.0.0",
-  "author": "Spacly Core Team",
+  "author": "Dark-Brain07",
   "type": "module",
   "main": "dist/index.js",
   "scripts": {

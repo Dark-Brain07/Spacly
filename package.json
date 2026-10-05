@@ -2,7 +2,7 @@
   "name": "spacly",
   "private": true,
   "version": "1.0.0",
-  "author": "Spacly Core Team",
+  "author": "Dark-Brain07",
   "description": "Evidence-bound GenLayer migration acceptance protocol",
   "workspaces": [
     "apps/web",

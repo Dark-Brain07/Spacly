@@ -3,7 +3,7 @@
 ## Repository and Current Deployment
 
 - **Project:** SPACLY
-- **Main Contributor:** Spacly Core Team / Main Contributor
+- **Main Contributor:** Dark-Brain07
 - **Branch:** `main`
 - **Network:** GenLayer StudioNet, Chain ID `61999`
 - **Contract Address:** [`0x860De7Dc72128C1F2A7EF9d415761641B05C25Bb`](https://explorer-studio.genlayer.com/address/0x860De7Dc72128C1F2A7EF9d415761641B05C25Bb)
