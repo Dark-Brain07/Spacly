@@ -1,0 +1,11 @@
+{
+  "project": "Spacly",
+  "contract": "Spacly",
+  "network": "studionet",
+  "chain_id": 61999,
+  "contract_address": "0x860De7Dc72128C1F2A7EF9d415761641B05C25Bb",
+  "deploy_transaction": "0xd6633802dd36137b269e6db8d9d91b955474a67e13b6db31a32748408b7c6932",
+  "operator": "0x9299d056Fa0cD00238cCF8A5785daB25b0DC8777",
+  "deployed_at": "2026-10-05T03:17:08.898707+00:00",
+  "explorer_url": "https://explorer-studio.genlayer.com/address/0x860De7Dc72128C1F2A7EF9d415761641B05C25Bb"
+}

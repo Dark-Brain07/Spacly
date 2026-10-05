@@ -1,0 +1,72 @@
+{
+  "schema_version": "cutover.live-browser-qa.v2",
+  "recorded_date": "2026-10-01",
+  "manual_qa_date": "2026-09-30",
+  "status": "COMPLETED_MANUAL_QA_WITH_OPTIONAL_GAPS",
+  "frontend_url": "https://cutover-kappa.vercel.app/",
+  "contract_address": "0x2A19548ae8A86a6d678890095f9F25eddeC16DD3",
+  "chain_id": 61999,
+  "frontend_fix_commit": "2a7599af90d2533d848e06887c3917681847552a",
+  "vercel_status_for_fix_commit": "SUCCESS",
+  "browser": "Chrome with a real injected wallet; manual production QA",
+  "observations": {
+    "canonical_frontend_and_revised_contract": {
+      "result": "PASS",
+      "detail": "The production frontend was redeployed against the revised Studionet contract and used chain 61999."
+    },
+    "wrong_network_handling": {
+      "result": "PASS_MANUAL",
+      "detail": "Wrong-network handling was exercised manually on the production frontend before returning to Studionet 61999."
+    },
+    "wallet_signature_rejection": {
+      "result": "PASS_MANUAL",
+      "detail": "A wallet transaction was deliberately rejected. The rejection path was exercised without claiming a submitted/finalized transaction."
+    },
+    "disconnect_reconnect": {
+      "result": "PASS_MANUAL",
+      "detail": "Disconnect and reconnect behavior was exercised with the injected wallet."
+    },
+    "create_migration_live_write": {
+      "result": "PASS_ON_CHAIN_UI_FALSE_NEGATIVE_DISCOVERED",
+      "migration_id": 5,
+      "transaction_hash": "transaction hash observed manually but not yet recorded in repository evidence",
+      "detail": "A real create_migration write finalized successfully on Studionet. Explorer showed FINALIZED, Accepted consensus, GenVM SUCCESS, result code Return, and create_migration returned migration 5. The old frontend incorrectly displayed EXECUTION FAILURE because txExecutionResultName was absent."
+    },
+    "add_route_live_write": {
+      "result": "PASS_ON_CHAIN_UI_FALSE_NEGATIVE_DISCOVERED",
+      "transaction_hash": "transaction hash observed manually but not yet recorded in repository evidence",
+      "detail": "A subsequent real add_route write also finalized successfully on Studionet. The same pre-fix frontend transaction-result interpretation path could report a false execution failure."
+    },
+    "transaction_result_normalization_bug": {
+      "result": "FIXED_AND_LIVE_RETESTED",
+      "old_frontend_message": "EXECUTION FAILURE — GenLayer transaction finalized without a successful execution result: UNKNOWN",
+      "root_cause": "On Studionet Studio, genlayer-js 1.1.8 can expose finalized execution success in consensus_data.leader_receipt.execution_result while txExecutionResultName is absent. The old frontend treated the missing normalized field as a proven execution failure.",
+      "fix_commit": "2a7599af90d2533d848e06887c3917681847552a",
+      "fix_detail": "The frontend now normalizes FINISHED_WITH_RETURN/FINISHED_WITH_ERROR and Studio leader receipt SUCCESS/ERROR separately, and reports genuinely missing execution evidence as unavailable rather than contract failure.",
+      "regression_evidence": {
+        "frontend_tests": "91/91",
+        "tx_test": "11",
+        "contract_submit_test": "7",
+        "frontend_mutation_sweep": "24/24"
+      },
+      "post_fix_live_confirmation": "After Vercel deployed the fix commit, another real Studionet frontend write finalized successfully and the production UI displayed EXECUTION SUCCESS and 'Finalized successfully; contract state re-read from LATEST_FINAL.'.",
+      "post_fix_transaction_hash": "transaction hash observed manually but not yet recorded in repository evidence"
+    },
+    "account_change": {
+      "result": "NOT RUN",
+      "detail": "No live account-change QA is claimed."
+    },
+    "pending_transaction_refresh_recovery": {
+      "result": "NOT RUN",
+      "detail": "No live pending-transaction refresh/recovery QA is claimed. Offline regression coverage exists, but it is not promoted to manual browser evidence."
+    }
+  },
+  "remaining_optional_evidence_gaps": [
+    "live account-change QA",
+    "live pending-transaction refresh recovery",
+    "revised-source live BLOCKED case",
+    "revised-source live prompt-injection case"
+  ],
+  "historical_record": "proof/live/browser-qa.json",
+  "historical_separation": "Historical browser and contract evidence remains preserved separately and is not presented as revised-source evidence."
+}

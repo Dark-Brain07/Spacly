@@ -1,0 +1,18 @@
+name: Deploy only after SPACLY authorization
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  spacly-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify finalized SPACLY authorization
+        uses: spacly/packages/gate@main
+        with:
+          contract-address: ${{ vars.SPACLY_CONTRACT_ADDRESS }}
+          migration-id: ${{ vars.SPACLY_MIGRATION_ID }}
+          expected-candidate-ref: ${{ github.sha }}
+          chain-id: '61999'
+      - name: Deployment step
+        run: echo "SPACLY gate passed; invoke your release or deployment step here."

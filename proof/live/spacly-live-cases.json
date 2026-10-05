@@ -1,0 +1,239 @@
+{
+  "contract_address": "0x860De7Dc72128C1F2A7EF9d415761641B05C25Bb",
+  "deploy_tx": "0xd6633802dd36137b269e6db8d9d91b955474a67e13b6db31a32748408b7c6932",
+  "operator": "0x9299d056Fa0cD00238cCF8A5785daB25b0DC8777",
+  "network": "studionet",
+  "chain_id": 61999,
+  "timestamp": "2026-10-05T03:14:13.376030+00:00",
+  "transactions": [
+    {
+      "label": "create_migration #1",
+      "tx_hash": "0x6d5bffa7018cba63c974f6dabab988860ad5ba3aca6ba125c5ac16557b102c8e",
+      "function": "create_migration",
+      "args": [
+        "Spacly Planetary Acceptance Protocol",
+        "https://example.com",
+        3600
+      ],
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE"
+    },
+    {
+      "label": "add_route",
+      "tx_hash": "0xf5e0078871ee264343784eab899ff60b5aa0976995e2fd5907f1cfe5652d976d",
+      "function": "add_route",
+      "args": [
+        1,
+        "core",
+        "https://example.com/",
+        "/",
+        [
+          {
+            "id": "orbit_nav",
+            "question": "Are core orbital navigation links and services preserved?",
+            "allowed_changes": "Modernized styling permitted"
+          }
+        ]
+      ],
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE"
+    },
+    {
+      "label": "create_migration #2",
+      "tx_hash": "0x5f3604955f325e47d35e98c30884ea77bebb6dd8c81134cf7b600294116f1b34",
+      "function": "create_migration",
+      "args": [
+        "Spacly Secondary Mesh Migration",
+        "https://example.com",
+        1800
+      ],
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE"
+    },
+    {
+      "label": "cancel_migration #2",
+      "tx_hash": "0x46848f45f6415bc4439d431825d245b54a9f9a3a6877854c41ddb55e029c8040",
+      "function": "cancel_migration",
+      "args": [
+        2
+      ],
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE"
+    }
+  ],
+  "views": {
+    "get_config": {
+      "candidate_manifest_schema": "spacly.candidate.v1",
+      "chain_id": 61999,
+      "max_challenges_per_generation": 3,
+      "max_challenges_per_route": 2,
+      "max_ordinary_attempts": 3,
+      "max_routes": 24,
+      "max_rules_per_route": 12,
+      "max_total_attempts": 5,
+      "network": "studionet",
+      "snapshot_schema": "spacly.baseline.v1"
+    },
+    "initial_stats": {
+      "events_retained": 0,
+      "events_total": 0,
+      "migrations": 0
+    },
+    "migration_1": {
+      "aggregate": "INCONCLUSIVE",
+      "assessed_generation": 0,
+      "baseline_generation": 1,
+      "baseline_origin": "https://example.com",
+      "cancelled": false,
+      "candidate_generation": 0,
+      "candidate_manifest": "",
+      "candidate_manifest_digest": "",
+      "candidate_manifest_url": "",
+      "candidate_origin": "",
+      "candidate_ref": "",
+      "challenge_open": false,
+      "id": 1,
+      "open_challenge_id": 0,
+      "owner": "0x9299d056Fa0cD00238cCF8A5785daB25b0DC8777",
+      "ready_at": 0,
+      "review_deadline": 0,
+      "review_window_seconds": 3600,
+      "route_ids": [],
+      "state": "DRAFT",
+      "title": "Spacly Planetary Acceptance Protocol"
+    },
+    "route_1_core": {
+      "baseline_auth_explanation": "",
+      "baseline_digest": "",
+      "baseline_frozen": false,
+      "baseline_probe": "",
+      "baseline_probe_digest": "",
+      "baseline_snapshot": "",
+      "baseline_snapshot_url": "",
+      "baseline_url": "https://example.com/",
+      "candidate_path": "/",
+      "route_id": "core",
+      "rules": [
+        {
+          "allowed_changes": "Modernized styling permitted",
+          "id": "orbit_nav",
+          "question": "Are core orbital navigation links and services preserved?"
+        }
+      ]
+    },
+    "migration_2": {
+      "aggregate": "INCONCLUSIVE",
+      "assessed_generation": 0,
+      "baseline_generation": 1,
+      "baseline_origin": "https://example.com",
+      "cancelled": true,
+      "candidate_generation": 0,
+      "candidate_manifest": "",
+      "candidate_manifest_digest": "",
+      "candidate_manifest_url": "",
+      "candidate_origin": "",
+      "candidate_ref": "",
+      "challenge_open": false,
+      "id": 2,
+      "open_challenge_id": 0,
+      "owner": "0x9299d056Fa0cD00238cCF8A5785daB25b0DC8777",
+      "ready_at": 0,
+      "review_deadline": 0,
+      "review_window_seconds": 1800,
+      "route_ids": [],
+      "state": "CANCELLED",
+      "title": "Spacly Secondary Mesh Migration"
+    },
+    "list_migrations": [
+      {
+        "aggregate": "INCONCLUSIVE",
+        "assessed_generation": 0,
+        "baseline_generation": 1,
+        "baseline_origin": "https://example.com",
+        "cancelled": false,
+        "candidate_generation": 0,
+        "candidate_manifest": "",
+        "candidate_manifest_digest": "",
+        "candidate_manifest_url": "",
+        "candidate_origin": "",
+        "candidate_ref": "",
+        "challenge_open": false,
+        "id": 1,
+        "open_challenge_id": 0,
+        "owner": "0x9299d056Fa0cD00238cCF8A5785daB25b0DC8777",
+        "ready_at": 0,
+        "review_deadline": 0,
+        "review_window_seconds": 3600,
+        "route_ids": [
+          "core"
+        ],
+        "state": "DRAFT",
+        "title": "Spacly Planetary Acceptance Protocol"
+      },
+      {
+        "aggregate": "INCONCLUSIVE",
+        "assessed_generation": 0,
+        "baseline_generation": 1,
+        "baseline_origin": "https://example.com",
+        "cancelled": true,
+        "candidate_generation": 0,
+        "candidate_manifest": "",
+        "candidate_manifest_digest": "",
+        "candidate_manifest_url": "",
+        "candidate_origin": "",
+        "candidate_ref": "",
+        "challenge_open": false,
+        "id": 2,
+        "open_challenge_id": 0,
+        "owner": "0x9299d056Fa0cD00238cCF8A5785daB25b0DC8777",
+        "ready_at": 0,
+        "review_deadline": 0,
+        "review_window_seconds": 1800,
+        "route_ids": [],
+        "state": "CANCELLED",
+        "title": "Spacly Secondary Mesh Migration"
+      }
+    ],
+    "operator_migrations": [
+      1,
+      2
+    ],
+    "events": [
+      {
+        "data": {
+          "owner": "0x9299d056Fa0cD00238cCF8A5785daB25b0DC8777"
+        },
+        "index": 0,
+        "kind": "MIGRATION_CREATED",
+        "migration_id": "1"
+      },
+      {
+        "data": {
+          "route_id": "core"
+        },
+        "index": 1,
+        "kind": "ROUTE_ADDED",
+        "migration_id": "1"
+      },
+      {
+        "data": {
+          "owner": "0x9299d056Fa0cD00238cCF8A5785daB25b0DC8777"
+        },
+        "index": 2,
+        "kind": "MIGRATION_CREATED",
+        "migration_id": "2"
+      },
+      {
+        "data": {},
+        "index": 3,
+        "kind": "CANCELLED",
+        "migration_id": "2"
+      }
+    ],
+    "final_stats": {
+      "events_retained": 4,
+      "events_total": 4,
+      "migrations": 2
+    }
+  }
+}
