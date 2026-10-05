@@ -1,5 +1,7 @@
 # SPACLY
 
+📖 **[Read our announcement on Medium!](https://medium.com/@engraju007/introducing-spacly-the-intelligent-migration-acceptance-protocol-powered-by-genlayer-7188460655ba)**
+
 **SPACLY is a GenLayer-backed intelligent production migration acceptance protocol.** It provides cryptographically verified and AI-consensus-driven release authorization to answer the critical production question: *has the candidate website or service preserved the routes, semantic commitments, and functional behaviors required to authorize production cutover?*
 
 A migration is never accepted simply because a server returns HTTP 200. SPACLY freezes bounded baseline evidence prior to migration, authenticates snapshots against public endpoints, independently probes candidate origins, classifies rule-level semantic changes through GenLayer validator consensus, and uses deterministic contract logic to progress states: `DRAFT → BASELINED → CANDIDATE → READY | BLOCKED | INCONCLUSIVE → CHALLENGED? → READY → AUTHORIZED`.
