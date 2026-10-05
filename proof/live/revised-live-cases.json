@@ -1,31 +1,31 @@
 {
-  "schema_version": "cutover.revised-live-cases.v1",
+  "schema_version": "spacly.revised-live-cases.v1",
   "recorded_at": "2026-09-30",
   "contract_address": "0x2A19548ae8A86a6d678890095f9F25eddeC16DD3",
   "contract_source_sha256": "13bfc90c1c2aad4ae09c591dbc72af1c063f43e0c71640e70c521b66ed867c79",
   "network": "studionet",
   "chain_id": 61999,
-  "fixture_origin": "https://cutover-live-proof-20260930.vercel.app",
+  "fixture_origin": "https://spacly-live-proof-20260930.vercel.app",
   "fixture_deployments": [
     {
       "case": "positive migration and challenge evidence",
-      "deployment": "https://fixtures-9niixzjv8-ifem1s-projects.vercel.app"
+      "deployment": "https://fixtures-9niixzjv8-Dark-Brain07s-projects.vercel.app"
     },
     {
       "case": "HTTP 503 source-unavailable endpoint",
-      "deployment": "https://fixtures-7ucnpo3tf-ifem1s-projects.vercel.app"
+      "deployment": "https://fixtures-7ucnpo3tf-Dark-Brain07s-projects.vercel.app"
     },
     {
       "case": "registered manifest candidate A",
-      "deployment": "https://fixtures-dphql7xeg-ifem1s-projects.vercel.app"
+      "deployment": "https://fixtures-dphql7xeg-Dark-Brain07s-projects.vercel.app"
     },
     {
       "case": "live manifest candidate B with changed release ref",
-      "deployment": "https://fixtures-3vu2p4igi-ifem1s-projects.vercel.app"
+      "deployment": "https://fixtures-3vu2p4igi-Dark-Brain07s-projects.vercel.app"
     },
     {
       "case": "wrong declared body SHA-256",
-      "deployment": "https://fixtures-ep4kdpsxu-ifem1s-projects.vercel.app"
+      "deployment": "https://fixtures-ep4kdpsxu-Dark-Brain07s-projects.vercel.app"
     }
   ],
   "transaction_receipt_convention": {
@@ -42,7 +42,7 @@
       "candidate_body_sha256": "e7d9102402d3f45fe474b1a26d795f152d11c603e5c205b8a1acb8b48f3b6a4c",
       "challenge": {
         "challenger": "0x77e2edbb43277bf772e207c517dde731935ffba5",
-        "evidence_url": "https://cutover-live-proof-20260930.vercel.app/cases/pricing-change",
+        "evidence_url": "https://spacly-live-proof-20260930.vercel.app/cases/pricing-change",
         "evidence_sha256": "941fe92511c2dae687900d93efa8a1840efa2491f1937526a577c27be447e794",
         "observed_claim": "$89/month contradicted the frozen $49/month requirement",
         "resolved": true,
@@ -447,9 +447,9 @@
     {
       "id": 3,
       "name": "candidate manifest release-ref mismatch fails closed",
-      "candidate_a_ref": "cutover-proof-ref-a-20260930",
+      "candidate_a_ref": "spacly-proof-ref-a-20260930",
       "candidate_a_manifest_digest": "d21113a0f362cd37363b7081956ecc9e8ac840f76d96b812db7f228c2f655f29",
-      "live_manifest_ref_during_assessment": "cutover-proof-ref-b-20260930",
+      "live_manifest_ref_during_assessment": "spacly-proof-ref-b-20260930",
       "live_manifest_digest_during_assessment": "72a36a7cc22154210e8401aaab8e93d51d09f669603abf53e694af7a72223348",
       "same_body_sha256": "e7d9102402d3f45fe474b1a26d795f152d11c603e5c205b8a1acb8b48f3b6a4c",
       "writes": [

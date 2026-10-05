@@ -17,7 +17,7 @@ async function main(){
   if(!Number.isInteger(migrationId)||migrationId<=0)throw new Error("migration-id must be a positive integer");
   if(!/^0x[a-fA-F0-9]{40}$/.test(address))throw new Error("contract-address must be a 20-byte hex address");
   if(!expected)throw new Error("expected-candidate-ref is required");
-  if(chainId!==61999)throw new Error("CUTOVER gate only supports Studionet chain 61999");
+  if(chainId!==61999)throw new Error("SPACLY gate only supports Studionet chain 61999");
 
   const client=createClient({chain:studionet}) as unknown as ReadClient;
   const read=(functionName:string)=>client.readContract({
@@ -33,7 +33,7 @@ async function main(){
   ]);
 
   checkGate(migrationRaw as Migration,authorizationRaw as Authorization,expected);
-  core.info(`CUTOVER authorization verified for ${expected}`);
+  core.info(`SPACLY authorization verified for ${expected}`);
 }
 
 main().catch(error=>{

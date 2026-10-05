@@ -1,6 +1,6 @@
 # Security model
 
-CUTOVER is designed to fail closed, but it is not a proof that websites or language models are perfectly stable.
+SPACLY is designed to fail closed, but it is not a proof that websites or language models are perfectly stable.
 
 ## Implemented controls
 
@@ -34,4 +34,4 @@ Validators may receive personalized/geographic/A-B-tested content. Candidate pag
 
 Historical live Studionet behavior for source SHA-256 `34018863567489cea352be045f16f6308b0a5c0ef8af668ad84551e10cf75834` remains in [`proof/live/deployment.json`](../proof/live/deployment.json), [`proof/live/adversarial-cases.json`](../proof/live/adversarial-cases.json), and [`proof/live/browser-qa.json`](../proof/live/browser-qa.json). Revised source SHA-256 `13bfc90c1c2aad4ae09c591dbc72af1c063f43e0c71640e70c521b66ed867c79` is deployed at `0x2A19548ae8A86a6d678890095f9F25eddeC16DD3`; retrieved source matched exactly. Revised positive/challenge/fail-closed cases are in [`revised deployment`](../proof/live/revised-deployment.json) and [`revised live cases`](../proof/live/revised-live-cases.json), the revised live GitHub gate passed, and production manual wallet QA is in [`revised browser QA`](../proof/live/revised-browser-qa.json). Live account-change and pending-refresh recovery remain unperformed; no revised-source live `BLOCKED` or prompt-injection case is claimed. Fee values were unavailable from captured receipts.
 
-A production-only `npm audit --omit=dev --json` evidence run reported 4 production-tree findings: 2 moderate and 2 high, with no critical findings. Next/PostCSS are in the web/fixture production dependency graph; `@actions/http-client`/Undici are in the GitHub gate production dependency graph. No automatic or SemVer-major dependency upgrade was applied in this evidence-only cleanup, and no CUTOVER-specific exploitability conclusion is claimed from the package-level audit alone.
+A production-only `npm audit --omit=dev --json` evidence run reported 4 production-tree findings: 2 moderate and 2 high, with no critical findings. Next/PostCSS are in the web/fixture production dependency graph; `@actions/http-client`/Undici are in the GitHub gate production dependency graph. No automatic or SemVer-major dependency upgrade was applied in this evidence-only cleanup, and no SPACLY-specific exploitability conclusion is claimed from the package-level audit alone.

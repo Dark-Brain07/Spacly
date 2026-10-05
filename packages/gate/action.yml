@@ -1,5 +1,5 @@
-name: CUTOVER deployment gate
-description: Read-only gate that requires an exact authorized CUTOVER candidate ref
+name: SPACLY deployment gate
+description: Read-only gate that requires an exact authorized SPACLY candidate ref
 inputs:
   contract-address:
     required: true

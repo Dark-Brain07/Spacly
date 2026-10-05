@@ -148,30 +148,30 @@ a {
   padding: 24px;
 }
 
-.cutoverRail {
+.spaclyRail {
   padding: 28px 8px;
   display: grid;
   gap: 16px;
 }
 
-.cutoverRail div {
+.spaclyRail div {
   display: grid;
   gap: 6px;
 }
 
-.cutoverRail span {
+.spaclyRail span {
   font-size: 11px;
   letter-spacing: 0.14em;
   font-weight: 900;
   color: #38bdf8;
 }
 
-.cutoverRail b {
+.spaclyRail b {
   font-size: 19px;
   color: #f8fafc;
 }
 
-.cutoverRail i {
+.spaclyRail i {
   font-style: normal;
   color: #818cf8;
   font-size: 22px;

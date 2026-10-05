@@ -260,7 +260,7 @@ def main():
     web_env_file = ROOT / "apps" / "web" / ".env.local"
     web_env_file.write_text(
         f"NEXT_PUBLIC_SPACLY_CONTRACT_ADDRESS={CONTRACT_ADDRESS}\n"
-        f"NEXT_PUBLIC_CUTOVER_CONTRACT_ADDRESS={CONTRACT_ADDRESS}\n",
+        f"NEXT_PUBLIC_SPACLY_CONTRACT_ADDRESS={CONTRACT_ADDRESS}\n",
         encoding="utf-8",
     )
     print(f"Frontend .env.local configured with contract address: {CONTRACT_ADDRESS}")

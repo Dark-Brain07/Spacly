@@ -1,5 +1,5 @@
 {
-  "schema_version": "cutover.proof-matrix.v3",
+  "schema_version": "spacly.proof-matrix.v3",
   "network": {
     "name": "studionet",
     "chain_id": 61999
@@ -13,9 +13,9 @@
   "live_evidence_status": "REVISED_SOURCE_EVIDENCE_COMPLETE_FOR_VERIFIED_SCOPE: revised deployment/source match, positive authorization, fail-closed INCONCLUSIVE cases, revised live GitHub gate, production revised-contract frontend, and manual injected-wallet QA are recorded. Optional revised-source BLOCKED/prompt-injection and live account-change/refresh-recovery cases remain unclaimed; historical records remain separate.",
   "revised_source_deployment_evidence": "proof/live/revised-deployment.json",
   "revised_source_live_cases": "proof/live/revised-live-cases.json",
-  "revised_frontend_url": "https://cutover-kappa.vercel.app/",
+  "revised_frontend_url": "https://spacly-kappa.vercel.app/",
   "revised_frontend_contract_configured": true,
-  "revised_source_final_ci_status": "PASS: https://github.com/Ifem1/cutover/actions/runs/36786339583 (commit 2a7599af90d2533d848e06887c3917681847552a)",
+  "revised_source_final_ci_status": "PASS: https://github.com/Dark-Brain07/spacly/actions/runs/36786339583 (commit 2a7599af90d2533d848e06887c3917681847552a)",
   "revised_source_live_gate_status": "PASS: final code CI run 36786339583; initial revised live-gate proof run 36769705489/job/110073021673",
   "revised_frontend_wallet_qa_status": "PASS_MANUAL_WITH_OPTIONAL_GAPS: wrong-network, wallet rejection, disconnect/reconnect and real revised-contract writes exercised; Studio execution-result false negative fixed in 2a7599af90d2533d848e06887c3917681847552a and live-retested. Account-change and pending-refresh recovery not run.",
   "local_validation": {
@@ -59,11 +59,11 @@
     "genvm_lint_and_validation": "PASS",
     "package_audit": {
       "status": "PASS",
-      "archive": "cutover-chatgpt-pro-handoff.zip",
+      "archive": "spacly-chatgpt-pro-handoff.zip",
       "entries": 118
     },
-    "ci": "PASS: https://github.com/Ifem1/cutover/actions/runs/36753618050 (source commit df47e9e1728a51afe51d8d6a25e0efbd29204741; live-gate job exercised historical deployment only)",
-    "revised_final_ci": "PASS: https://github.com/Ifem1/cutover/actions/runs/36786339583 (commit 2a7599af90d2533d848e06887c3917681847552a)",
+    "ci": "PASS: https://github.com/Dark-Brain07/spacly/actions/runs/36753618050 (source commit df47e9e1728a51afe51d8d6a25e0efbd29204741; live-gate job exercised historical deployment only)",
+    "revised_final_ci": "PASS: https://github.com/Dark-Brain07/spacly/actions/runs/36786339583 (commit 2a7599af90d2533d848e06887c3917681847552a)",
     "frontend_test_breakdown": {
       "tx_test": 11,
       "contract_submit_test": 7

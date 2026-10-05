@@ -1,10 +1,10 @@
 # Baseline model
 
-CUTOVER freezes a **bounded review artefact**, not a webpage archive. Each route uses schema `cutover.baseline.v1` with only route/source identity, capture metadata, title, canonical URL, bounded headings/visible text, important links, form/action descriptions, and important claims.
+SPACLY freezes a **bounded review artefact**, not a webpage archive. Each route uses schema `spacly.baseline.v1` with only route/source identity, capture metadata, title, canonical URL, bounded headings/visible text, important links, form/action descriptions, and important claims.
 
 ## Freeze path
 
-`freeze_route` first treats the submitted JSON as hostile input. It requires the exact schema keys, route/source identity, per-field bounds, URL bounds, and a caller-supplied SHA-256 that must match CUTOVER's own canonical JSON digest. The digest is therefore a commitment to one exact bounded artefact, not a claim that the source website itself is immutable.
+`freeze_route` first treats the submitted JSON as hostile input. It requires the exact schema keys, route/source identity, per-field bounds, URL bounds, and a caller-supplied SHA-256 that must match SPACLY's own canonical JSON digest. The digest is therefore a commitment to one exact bounded artefact, not a claim that the source website itself is immutable.
 
 The consensus step then independently renders the public baseline route. The leader and validators separately judge only whether the proposed bounded snapshot faithfully represents the review-relevant public content. Source failure, malformed model output, or validator disagreement cannot freeze the route.
 

@@ -1,5 +1,5 @@
 {
-  "schema_version": "cutover.live-case.v1",
+  "schema_version": "spacly.live-case.v1",
   "case_id": "negative-cycle-4",
   "recorded_at": "2026-09-30T10:55:05Z",
   "network": {
@@ -10,8 +10,8 @@
   "contract_address": "0xB8B2157c9d4f19c66e241178A63A89B13EAB3237",
   "contract_source_sha256": "34018863567489cea352be045f16f6308b0a5c0ef8af668ad84551e10cf75834",
   "source_commit": "548cb04a79166a3fa59778c4214f7d3cc56b3059",
-  "baseline_origin": "https://cutover-fixtures.vercel.app",
-  "candidate_origin": "https://cutover-fixtures-negative.vercel.app",
+  "baseline_origin": "https://spacly-fixtures.vercel.app",
+  "candidate_origin": "https://spacly-fixtures-negative.vercel.app",
   "candidate_ref": "796473c3eda18701ca293cb1100b065652f1da9c",
   "manifest_digest": "e2de0502a54d5005e39aa9e87c4342e39b232b62fdb419f243b04e1e3d5f1ada",
   "migration_id": 4,

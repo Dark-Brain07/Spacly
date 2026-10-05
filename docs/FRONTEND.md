@@ -1,10 +1,10 @@
 # Frontend
 
-The Next.js App Router UI is the CUTOVER release-control surface: warm neutral canvas, deep ink, orange operational accent, hot-pink emphasis, yellow attention, route matrices and baseline→candidate relationships rather than a generic crypto/admin dashboard. Status is conveyed in text/shape as well as colour; focus and reduced-motion rules live in the global stylesheet.
+The Next.js App Router UI is the SPACLY release-control surface: warm neutral canvas, deep ink, orange operational accent, hot-pink emphasis, yellow attention, route matrices and baseline→candidate relationships rather than a generic crypto/admin dashboard. Status is conveyed in text/shape as well as colour; focus and reduced-motion rules live in the global stylesheet.
 
 Reads use a wallet-free stable `genlayer-js` Studionet client. Writes use an injected EIP-1193 provider only. There is no private-key generation, wallet snap, backend signer or fake-chain fallback.
 
-Until `NEXT_PUBLIC_CUTOVER_CONTRACT_ADDRESS` contains a valid address, chain-backed pages show **Contract not configured yet** rather than fabricated migrations.
+Until `NEXT_PUBLIC_SPACLY_CONTRACT_ADDRESS` contains a valid address, chain-backed pages show **Contract not configured yet** rather than fabricated migrations.
 
 ## Contract parity and actions
 

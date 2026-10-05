@@ -19,14 +19,14 @@ export type TxPhase=
   |"rpc_error"
   |"timeout";
 
-export type PendingCutoverTransaction={
+export type PendingSpaclyTransaction={
   hash:`0x${string}`;
   method:string;
   migrationId?:number;
   submittedAt:number;
 };
 
-const PENDING_TX_KEY="cutover.pendingTransaction.v1";
+const PENDING_TX_KEY="spacly.pendingTransaction.v1";
 const DEFAULT_TIMEOUT_MS=5*60*1000;
 const DEFAULT_POLL_INTERVAL_MS=3000;
 
@@ -39,7 +39,7 @@ function toTransactionHash(hash:`0x${string}`):TransactionHash{
   return hash as TransactionHash;
 }
 
-export function loadPendingTransaction():PendingCutoverTransaction|null{
+export function loadPendingTransaction():PendingSpaclyTransaction|null{
   if(typeof window==="undefined")return null;
   try{
     const value=JSON.parse(window.sessionStorage.getItem(PENDING_TX_KEY)??"null");
@@ -48,7 +48,7 @@ export function loadPendingTransaction():PendingCutoverTransaction|null{
   }catch{return null;}
 }
 
-export function savePendingTransaction(value:PendingCutoverTransaction):boolean{
+export function savePendingTransaction(value:PendingSpaclyTransaction):boolean{
   if(typeof window==="undefined")return false;
   try{window.sessionStorage.setItem(PENDING_TX_KEY,JSON.stringify(value));return true;}catch{return false;}
 }

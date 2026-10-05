@@ -1,6 +1,6 @@
-"""Actual-contract mutation harness for CUTOVER.
+"""Actual-contract mutation harness for SPACLY.
 
-Every mutant edits contracts/cutover.py itself, compiles the mutant, and runs the
+Every mutant edits contracts/spacly.py itself, compiles the mutant, and runs the
 Direct Mode test(s) that exercise the changed invariant. A complete unmodified
 Direct Mode control run is mandatory before any mutant is executed.
 """
@@ -12,8 +12,8 @@ import sys
 import tempfile
 
 ROOT=Path(__file__).resolve().parents[1]
-SOURCE_PATH=ROOT/"contracts/cutover.py"
-TEST_FILE="tests/direct/test_cutover_direct.py"
+SOURCE_PATH=ROOT/"contracts/spacly.py"
+TEST_FILE="tests/direct/test_spacly_direct.py"
 SOURCE=SOURCE_PATH.read_text()
 
 # (name, source text, mutant text, targeted Direct Mode test function)
@@ -44,9 +44,9 @@ MUTANTS=[
     ("store_unverified_baseline_probe",'r["baseline_probe"]=_dumps(result.get("probe",{}))','r["baseline_probe"]=_dumps({})',"test_frozen_baseline_is_immutable"),
     ("allow_candidate_from_terminal",'if m["state"] not in ("BASELINED","CANDIDATE","BLOCKED","INCONCLUSIVE","READY","CHALLENGED"):','if False and m["state"] not in ("BASELINED","CANDIDATE","BLOCKED","INCONCLUSIVE","READY","CHALLENGED"):',"test_authorized_state_is_terminal"),
     ("allow_invalid_candidate_origin",'origin=candidate_origin.rstrip("/"); _bounded(candidate_origin,1024,"candidate origin",False); _bounded(manifest_url,1024,"manifest url",False)\n        if not _valid_origin(origin):','origin=candidate_origin.rstrip("/"); _bounded(candidate_origin,1024,"candidate origin",False); _bounded(manifest_url,1024,"manifest url",False)\n        if False and not _valid_origin(origin):',"test_invalid_candidate_origin_rejected"),
-    ("allow_external_manifest_url",'if manifest_url!=origin+"/.well-known/cutover.json":','if False and manifest_url!=origin+"/.well-known/cutover.json":',"test_manifest_url_must_be_well_known_same_origin"),
+    ("allow_external_manifest_url",'if manifest_url!=origin+"/.well-known/spacly.json":','if False and manifest_url!=origin+"/.well-known/spacly.json":',"test_manifest_url_must_be_well_known_same_origin"),
     ("ignore_manifest_http_status",'if int(response.status)!=200 or len(body)>MAX_MANIFEST_BYTES:','if False or len(body)>MAX_MANIFEST_BYTES:',"test_manifest_unavailable_rejected"),
-    ("ignore_manifest_schema_version",'or manifest.get("schema_version")!="cutover.candidate.v1"','or False',"test_manifest_schema_version_rejected"),
+    ("ignore_manifest_schema_version",'or manifest.get("schema_version")!="spacly.candidate.v1"','or False',"test_manifest_schema_version_rejected"),
     ("ignore_manifest_origin",'manifest.get("candidate_origin")!=origin or ','',"test_manifest_origin_mismatch_rejected"),
     ("allow_empty_manifest_release_ref",' or not manifest.get("release_ref")','',"test_manifest_empty_release_ref_rejected"),
     ("ignore_manifest_route_schema",' or set(item)!=MANIFEST_ROUTE_FIELDS',' or False',"test_manifest_route_schema_extra_field_rejected"),
@@ -95,7 +95,7 @@ MUTANTS=[
 
 
 def run_pytest(contract_path:Path,node:str|None=None,quiet:bool=True)->subprocess.CompletedProcess:
-    env=os.environ.copy(); env["CUTOVER_CONTRACT_PATH"]=str(contract_path)
+    env=os.environ.copy(); env["SPACLY_CONTRACT_PATH"]=str(contract_path)
     cmd=[sys.executable,"-m","pytest",TEST_FILE]
     if node: cmd[-1]=f"{TEST_FILE}::{node}"
     cmd += ["-q"] if quiet else ["-v"]
@@ -108,14 +108,14 @@ def main()->int:
         print("UNMODIFIED CONTROL FAILED",file=sys.stderr); return 2
     print("UNMODIFIED CONTROL PASS")
     killed=[]; failures=[]
-    with tempfile.TemporaryDirectory(prefix="cutover-mutants-") as td:
+    with tempfile.TemporaryDirectory(prefix="spacly-mutants-") as td:
         td=Path(td)
         for index,(name,old,new,test_name) in enumerate(MUTANTS,1):
             occurrences=SOURCE.count(old)
             if occurrences!=1:
                 failures.append(f"{name}: pattern count {occurrences}, expected 1"); continue
             mutant=SOURCE.replace(old,new,1)
-            path=td/f"cutover_{index:02d}_{name}.py"; path.write_text(mutant)
+            path=td/f"spacly_{index:02d}_{name}.py"; path.write_text(mutant)
             compile_result=subprocess.run([sys.executable,"-m","py_compile",str(path)],cwd=ROOT,capture_output=True,text=True)
             if compile_result.returncode!=0:
                 failures.append(f"{name}: invalid mutant syntax: {compile_result.stderr.strip()}"); continue

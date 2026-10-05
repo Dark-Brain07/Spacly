@@ -1,7 +1,7 @@
 import {describe,it,expect} from "vitest";
 import {assessmentCanRun,canonicalJson,isSafeCandidatePath,manifestUrlForOrigin,reviewProgress} from "../lib/workflow";
 describe("workflow helpers",()=>{
- it("builds same-origin well-known manifest URL",()=>expect(manifestUrlForOrigin("https://candidate.example/" )).toBe("https://candidate.example/.well-known/cutover.json"));
+ it("builds same-origin well-known manifest URL",()=>expect(manifestUrlForOrigin("https://candidate.example/" )).toBe("https://candidate.example/.well-known/spacly.json"));
  for(const path of ["/pricing","/legal/terms","/"])it(`accepts safe path ${path}`,()=>expect(isSafeCandidatePath(path)).toBe(true));
  for(const path of ["https://evil.example/x","//evil.example/x","/../secret","/pricing?x=1","pricing"])it(`rejects unsafe path ${path}`,()=>expect(isSafeCandidatePath(path)).toBe(false));
  it("allows first assessment",()=>expect(assessmentCanRun("CANDIDATE",undefined,0)).toBe(true));

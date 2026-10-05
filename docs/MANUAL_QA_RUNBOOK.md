@@ -1,14 +1,14 @@
-# CUTOVER human browser and wallet QA runbook
+# SPACLY human browser and wallet QA runbook
 
 Run these checks against the revised contract after it has been deployed, source-verified, and configured on the canonical frontend. The previous browser record applies to the earlier contract source and does not satisfy this runbook. Do not report a row as verified until an operator records the observed result.
 
 ## Before starting
 
-- Frontend: <https://cutover-kappa.vercel.app/>
+- Frontend: <https://spacly-kappa.vercel.app/>
 - Expected network: Studionet, chain ID `61999`
 - Expected contract: `0x2A19548ae8A86a6d678890095f9F25eddeC16DD3` (not the previous `0xB8B2157c9d4f19c66e241178A63A89B13EAB3237` address)
 - Wallet: injected wallet with an account intended for the specific test; do not paste or record private keys.
-- Vercel environment: `NEXT_PUBLIC_CUTOVER_CONTRACT_ADDRESS=0x2A19548ae8A86a6d678890095f9F25eddeC16DD3`; deploy the frontend after setting it.
+- Vercel environment: `NEXT_PUBLIC_SPACLY_CONTRACT_ADDRESS=0x2A19548ae8A86a6d678890095f9F25eddeC16DD3`; deploy the frontend after setting it.
 - Use the browser at 100% zoom and record browser size/device. Test only after the canonical frontend points at the revised contract.
 
 ## Tests

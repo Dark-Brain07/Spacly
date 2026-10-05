@@ -2,7 +2,7 @@ import {MigrationWorkbench,type WorkbenchMigration,type WorkbenchRoute} from "@/
 import {NotConfigured} from "@/components/NotConfigured";
 import {RouteMatrix} from "@/components/RouteMatrix";
 import {CONTRACT_ADDRESS,NETWORK,isConfigured} from "@/lib/config";
-import {readCutover} from "@/lib/contract";
+import {readSpacly} from "@/lib/contract";
 import type {MigrationState} from "@/lib/policy";
 export const dynamic="force-dynamic";
 
@@ -21,9 +21,9 @@ export default async function Page({params}:{params:Promise<{id:string}>}){
  if(!isConfigured())return <main className="wrap section"><div className="eyebrow">Control room · migration {id}</div><h1>Baseline → candidate</h1><NotConfigured/></main>;
  if(!Number.isInteger(mid)||mid<=0)return <main className="wrap section"><h1>Invalid migration ID</h1></main>;
  try{
-  const migration=await readCutover("get_migration",[mid]) as MigrationRecord;
-  const routePairs=await Promise.all((migration.route_ids||[]).map(async routeId=>{const [route,assessment]=await Promise.all([readCutover("get_route",[mid,routeId]) as Promise<RouteRecord>,migration.candidate_generation?readCutover("get_route_assessment",[mid,migration.candidate_generation,routeId]) as Promise<Assessment>:Promise.resolve({} as Assessment)]);return {route,assessment};}));
-  const [challenges,authorization]=await Promise.all([migration.candidate_generation?readCutover("get_challenges",[mid,migration.candidate_generation,0,50]) as Promise<Challenge[]>:Promise.resolve([] as Challenge[]),readCutover("get_authorization",[mid]) as Promise<Authorization>]);
+  const migration=await readSpacly("get_migration",[mid]) as MigrationRecord;
+  const routePairs=await Promise.all((migration.route_ids||[]).map(async routeId=>{const [route,assessment]=await Promise.all([readSpacly("get_route",[mid,routeId]) as Promise<RouteRecord>,migration.candidate_generation?readSpacly("get_route_assessment",[mid,migration.candidate_generation,routeId]) as Promise<Assessment>:Promise.resolve({} as Assessment)]);return {route,assessment};}));
+  const [challenges,authorization]=await Promise.all([migration.candidate_generation?readSpacly("get_challenges",[mid,migration.candidate_generation,0,50]) as Promise<Challenge[]>:Promise.resolve([] as Challenge[]),readSpacly("get_authorization",[mid]) as Promise<Authorization>]);
   const rows=routePairs.map(({route,assessment})=>({id:route.route_id,href:`/migrations/${mid}/routes/${encodeURIComponent(route.route_id)}`,route:route.baseline_url,destination:migration.candidate_origin?migration.candidate_origin+route.candidate_path:route.candidate_path,rules:route.rules.length,frozen:route.baseline_frozen,status:assessment.route_result||"NOT ASSESSED",attempts:Number(assessment.attempt||0),decisive:decisive(assessment)}));
   const wbRoutes:WorkbenchRoute[]=routePairs.map(({route,assessment})=>({...route,assessment,challenge_attempts:challenges.filter(c=>c.route_id===route.route_id).length}));
   const wbMigration:WorkbenchMigration={id:mid,owner:migration.owner,state:migration.state as MigrationState,candidate_generation:migration.candidate_generation,assessed_generation:migration.assessed_generation,review_deadline:migration.review_deadline,challenge_open:migration.challenge_open,challenge_count:challenges.length,candidate_origin:migration.candidate_origin,candidate_ref:migration.candidate_ref,candidate_manifest_url:migration.candidate_manifest_url,candidate_manifest_digest:migration.candidate_manifest_digest};

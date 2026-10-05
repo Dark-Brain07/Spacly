@@ -23,13 +23,13 @@ assert Path('package-lock.json').is_file() and Path('package-lock.json').stat().
 assert Path('packages/gate/dist/index.js').is_file() and Path('packages/gate/dist/index.js').stat().st_size>0
 root_package=json.loads(Path('package.json').read_text());assert root_package['devDependencies']['genlayer']=='0.39.1'
 web_package=json.loads(Path('apps/web/package.json').read_text());assert web_package['dependencies']['genlayer-js']=='1.1.8'
-contract=Path('contracts/cutover.py').read_text()
-for required in ['gl.nondet.web.get(','mode="html"','mode="text"','cutover.candidate.v1','candidate_manifest_digest','assessment_attempts','challenge_route_used','evidence_root','owner_migration_index','MAX_ORDINARY_ATTEMPTS','owner cannot challenge own candidate']:
+contract=Path('contracts/spacly.py').read_text()
+for required in ['gl.nondet.web.get(','mode="html"','mode="text"','spacly.candidate.v1','candidate_manifest_digest','assessment_attempts','challenge_route_used','evidence_root','owner_migration_index','MAX_ORDINARY_ATTEMPTS','owner cannot challenge own candidate']:
     assert required in contract,required
-assert 'CUTOVER observation stage' not in contract
+assert 'SPACLY observation stage' not in contract
 assert 'evidence_text:str' not in contract
 assert 'candidate_ref:str' not in contract
-mutation=Path('scripts/contract_mutation.py').read_text();assert 'contracts/cutover.py' in mutation and 'UNMODIFIED CONTROL PASS' in mutation and 'core_logic.py' not in mutation
+mutation=Path('scripts/contract_mutation.py').read_text();assert 'contracts/spacly.py' in mutation and 'UNMODIFIED CONTROL PASS' in mutation and 'core_logic.py' not in mutation
 surface=json.loads(Path('contracts/surface.json').read_text());assert surface['writes']['set_candidate']==['migration_id','candidate_origin','manifest_url','expected_manifest_sha256'];assert surface['writes']['open_challenge']==['migration_id','route_id','evidence_url'];assert surface['views']['migrations_of']==['address','offset','limit']
 fixture=Path('apps/fixtures/app/api/unavailable/route.ts').read_text();assert 'status:503' in fixture
 plan=json.loads(Path('proof/cases.json').read_text());assert plan['chain_id']==61999 and any(x['fixture']=='/api/unavailable' for x in plan['cases'])

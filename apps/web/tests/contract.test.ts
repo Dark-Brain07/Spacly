@@ -15,7 +15,7 @@ vi.mock("../lib/config",()=>({
   isConfigured:()=>true,
 }));
 
-import {writeCutover} from "../lib/contract";
+import {writeSpacly} from "../lib/contract";
 
 const ACCOUNT="0x1111111111111111111111111111111111111111" as `0x${string}`;
 const HASH=("0x"+"a".repeat(64)) as `0x${string}`;
@@ -29,7 +29,7 @@ describe("provider-backed contract writes",()=>{
 
   it("uses the selected EIP-1193 provider directly without legacy connect or unavailable fee helpers",async()=>{
     const provider={request:vi.fn()};
-    const result=await writeCutover(ACCOUNT,provider,"create_migration",["QA","https://example.com",300]);
+    const result=await writeSpacly(ACCOUNT,provider,"create_migration",["QA","https://example.com",300]);
 
     expect(result).toBe(HASH);
     expect(createClient).toHaveBeenCalledWith(expect.objectContaining({account:ACCOUNT,provider}));

@@ -21,7 +21,7 @@ export default function Home() {
         </div>
         <div className="heroCard">
           <div className="signal" />
-          <div className="cutoverRail">
+          <div className="spaclyRail">
             <div>
               <span>BASELINE</span>
               <b>Frozen + Authenticated</b>

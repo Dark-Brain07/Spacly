@@ -3,13 +3,13 @@ import {afterEach,beforeEach,describe,expect,it,vi} from "vitest";
 import {fireEvent,render,screen,waitFor,cleanup} from "@testing-library/react";
 import {ExecutionResult,TransactionStatus} from "genlayer-js/types";
 
-const {getTransaction,writeCutover,readCutover,refresh}=vi.hoisted(()=>({
-  getTransaction:vi.fn(),writeCutover:vi.fn(),readCutover:vi.fn(),refresh:vi.fn(),
+const {getTransaction,writeSpacly,readSpacly,refresh}=vi.hoisted(()=>({
+  getTransaction:vi.fn(),writeSpacly:vi.fn(),readSpacly:vi.fn(),refresh:vi.fn(),
 }));
 vi.mock("genlayer-js",()=>({createClient:()=>({getTransaction})}));
 vi.mock("genlayer-js/chains",()=>({studionet:{id:61999}}));
 vi.mock("next/navigation",()=>({useRouter:()=>({refresh})}));
-vi.mock("@/lib/contract",()=>({readCutover,writeCutover}));
+vi.mock("@/lib/contract",()=>({readSpacly,writeSpacly}));
 vi.mock("@/lib/config",()=>({isConfigured:()=>true,NETWORK:{explorer:"https://explorer.studio.genlayer.com"}}));
 vi.mock("../components/WalletSession",()=>({useWallet:()=>({provider:{request:vi.fn()},account:"0x1111111111111111111111111111111111111111",networkOk:true})}));
 
@@ -26,11 +26,11 @@ function Harness(){
 }
 
 describe("contract submission recovery",()=>{
-  beforeEach(()=>{sessionStorage.clear();getTransaction.mockReset();writeCutover.mockReset();readCutover.mockReset();refresh.mockReset();});
+  beforeEach(()=>{sessionStorage.clear();getTransaction.mockReset();writeSpacly.mockReset();readSpacly.mockReset();refresh.mockReset();});
   afterEach(cleanup);
 
   it("labels a rejected wallet signature and stores no transaction",async()=>{
-    writeCutover.mockRejectedValueOnce(Object.assign(new Error("User rejected request"),{code:4001}));
+    writeSpacly.mockRejectedValueOnce(Object.assign(new Error("User rejected request"),{code:4001}));
     render(<Harness/>);
     fireEvent.click(screen.getByRole("button",{name:"Submit"}));
     await waitFor(()=>expect(screen.getByTestId("phase").textContent).toBe("signature_rejected"));
@@ -40,7 +40,7 @@ describe("contract submission recovery",()=>{
   });
 
   it("renders structured provider failures instead of object Object",async()=>{
-    writeCutover.mockRejectedValueOnce({code:-32000,message:"Studionet write failed",data:{details:"RPC rejected transaction"}});
+    writeSpacly.mockRejectedValueOnce({code:-32000,message:"Studionet write failed",data:{details:"RPC rejected transaction"}});
     render(<Harness/>);
     fireEvent.click(screen.getByRole("button",{name:"Submit"}));
     await waitFor(()=>expect(screen.getByTestId("phase").textContent).toBe("submission_error"));
@@ -50,15 +50,15 @@ describe("contract submission recovery",()=>{
   });
 
   it("restores an RPC-interrupted hash after refresh, resumes polling, and re-reads final state",async()=>{
-    writeCutover.mockResolvedValueOnce(HASH);
+    writeSpacly.mockResolvedValueOnce(HASH);
     getTransaction.mockRejectedValueOnce(new Error("RPC offline"));
     getTransaction.mockResolvedValueOnce({statusName:TransactionStatus.FINALIZED,txExecutionResultName:ExecutionResult.FINISHED_WITH_RETURN});
-    readCutover.mockResolvedValueOnce({id:3,state:"AUTHORIZED"});
+    readSpacly.mockResolvedValueOnce({id:3,state:"AUTHORIZED"});
 
     const first=render(<Harness/>);
     fireEvent.click(screen.getByRole("button",{name:"Submit"}));
     await waitFor(()=>expect(screen.getByTestId("phase").textContent).toBe("rpc_error"));
-    expect(sessionStorage.getItem("cutover.pendingTransaction.v1")).toContain(HASH);
+    expect(sessionStorage.getItem("spacly.pendingTransaction.v1")).toContain(HASH);
     expect(screen.getByRole("button",{name:"Resume status tracking"})).toBeTruthy();
 
     first.unmount();
@@ -67,68 +67,68 @@ describe("contract submission recovery",()=>{
     fireEvent.click(screen.getByRole("button",{name:"Resume status tracking"}));
 
     await waitFor(()=>expect(screen.getByTestId("phase").textContent).toBe("execution_success"));
-    expect(readCutover).toHaveBeenCalledWith("get_migration",[3]);
-    expect(sessionStorage.getItem("cutover.pendingTransaction.v1")).toBeNull();
+    expect(readSpacly).toHaveBeenCalledWith("get_migration",[3]);
+    expect(sessionStorage.getItem("spacly.pendingTransaction.v1")).toBeNull();
     expect(refresh).toHaveBeenCalledOnce();
   });
 
   it("treats a production-shaped Studio FINALIZED/SUCCESS transaction as successful without txExecutionResultName",async()=>{
-    writeCutover.mockResolvedValueOnce(HASH);
+    writeSpacly.mockResolvedValueOnce(HASH);
     getTransaction.mockResolvedValueOnce({
       statusName:TransactionStatus.FINALIZED,
       consensus_data:{leader_receipt:[{execution_result:"SUCCESS"}]},
     });
-    readCutover.mockResolvedValueOnce({id:3,state:"CANDIDATE"});
+    readSpacly.mockResolvedValueOnce({id:3,state:"CANDIDATE"});
 
     render(<Harness/>);
     fireEvent.click(screen.getByRole("button",{name:"Submit"}));
 
     await waitFor(()=>expect(screen.getByTestId("phase").textContent).toBe("execution_success"));
-    expect(readCutover).toHaveBeenCalledWith("get_migration",[3]);
+    expect(readSpacly).toHaveBeenCalledWith("get_migration",[3]);
     expect(screen.getByText("Finalized successfully; contract state re-read from LATEST_FINAL.")).toBeTruthy();
     expect(screen.queryByText("EXECUTION FAILURE")).toBeNull();
     expect(screen.queryByText(/UNKNOWN/)).toBeNull();
-    expect(sessionStorage.getItem("cutover.pendingTransaction.v1")).toBeNull();
+    expect(sessionStorage.getItem("spacly.pendingTransaction.v1")).toBeNull();
     expect(refresh).toHaveBeenCalledOnce();
   });
 
   it("rereads contract state after a Studio finalized execution ERROR",async()=>{
-    writeCutover.mockResolvedValueOnce(HASH);
+    writeSpacly.mockResolvedValueOnce(HASH);
     getTransaction.mockResolvedValueOnce({
       statusName:TransactionStatus.FINALIZED,
       consensus_data:{leader_receipt:[{execution_result:"ERROR"}]},
     });
-    readCutover.mockResolvedValueOnce({id:3,state:"CANDIDATE"});
+    readSpacly.mockResolvedValueOnce({id:3,state:"CANDIDATE"});
     render(<Harness/>);
     fireEvent.click(screen.getByRole("button",{name:"Submit"}));
     await waitFor(()=>expect(screen.getByTestId("phase").textContent).toBe("execution_failure"));
-    expect(readCutover).toHaveBeenCalledWith("get_migration",[3]);
+    expect(readSpacly).toHaveBeenCalledWith("get_migration",[3]);
     expect(screen.getByText(/"state": "CANDIDATE"/)).toBeTruthy();
-    expect(sessionStorage.getItem("cutover.pendingTransaction.v1")).toBeNull();
+    expect(sessionStorage.getItem("spacly.pendingTransaction.v1")).toBeNull();
     expect(refresh).toHaveBeenCalledOnce();
   });
 
   it("keeps normalized FINISHED_WITH_ERROR failure handling",async()=>{
-    writeCutover.mockResolvedValueOnce(HASH);
+    writeSpacly.mockResolvedValueOnce(HASH);
     getTransaction.mockResolvedValueOnce({statusName:TransactionStatus.FINALIZED,txExecutionResultName:ExecutionResult.FINISHED_WITH_ERROR});
-    readCutover.mockResolvedValueOnce({id:3,state:"CANDIDATE"});
+    readSpacly.mockResolvedValueOnce({id:3,state:"CANDIDATE"});
     render(<Harness/>);
     fireEvent.click(screen.getByRole("button",{name:"Submit"}));
     await waitFor(()=>expect(screen.getByTestId("phase").textContent).toBe("execution_failure"));
-    expect(readCutover).toHaveBeenCalledWith("get_migration",[3]);
+    expect(readSpacly).toHaveBeenCalledWith("get_migration",[3]);
   });
 
   it("labels genuinely unavailable execution evidence accurately and still rereads finalized state",async()=>{
-    writeCutover.mockResolvedValueOnce(HASH);
+    writeSpacly.mockResolvedValueOnce(HASH);
     getTransaction.mockResolvedValueOnce({statusName:TransactionStatus.FINALIZED});
-    readCutover.mockResolvedValueOnce({id:3,state:"CANDIDATE"});
+    readSpacly.mockResolvedValueOnce({id:3,state:"CANDIDATE"});
     render(<Harness/>);
     fireEvent.click(screen.getByRole("button",{name:"Submit"}));
     await waitFor(()=>expect(screen.getByTestId("phase").textContent).toBe("execution_unavailable"));
     expect(screen.getByText("GenLayer transaction finalized, but its execution result is unavailable from both normalized SDK and Studio leader receipt data.")).toBeTruthy();
     expect(screen.queryByText("EXECUTION FAILURE")).toBeNull();
     expect(screen.queryByText(/UNKNOWN/)).toBeNull();
-    expect(readCutover).toHaveBeenCalledWith("get_migration",[3]);
+    expect(readSpacly).toHaveBeenCalledWith("get_migration",[3]);
     expect(screen.getByText(/"state": "CANDIDATE"/)).toBeTruthy();
     expect(refresh).toHaveBeenCalledOnce();
   });

@@ -63,7 +63,7 @@ export function WalletSessionProvider({children}:{children:React.ReactNode}){
       await refreshNetwork(provider);
     }catch(error){setMessage(error instanceof Error?`Could not switch network: ${error.message}`:"Could not switch network.");}
   }
-  function disconnect(){sessionRevision.current++;setAccount(null);setNetworkOk(false);setMessage("Disconnected in CUTOVER. The wallet extension may remain authorized independently.");}
+  function disconnect(){sessionRevision.current++;setAccount(null);setNetworkOk(false);setMessage("Disconnected in SPACLY. The wallet extension may remain authorized independently.");}
 
   useEffect(()=>{
     if(!provider)return;
@@ -88,7 +88,7 @@ export function WalletSessionProvider({children}:{children:React.ReactNode}){
       sessionRevision.current++;
       const id=typeof value==="number"?value:Number.parseInt(String(value),16);
       const ok=id===NETWORK.chainId;setChainId(Number.isFinite(id)?id:null);setNetworkOk(ok);
-      setMessage(ok?"Connected to Studionet 61999.":"Wallet network changed. CUTOVER writes are disabled until Studionet 61999 is restored.");
+      setMessage(ok?"Connected to Studionet 61999.":"Wallet network changed. SPACLY writes are disabled until Studionet 61999 is restored.");
     };
     void (async()=>{
       try{

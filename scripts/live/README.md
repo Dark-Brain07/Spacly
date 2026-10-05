@@ -4,7 +4,7 @@ All live scripts are pinned to Studionet chain 61999 and use the repository-loca
 
 ## Fixture deployment and manifest
 
-Deploy `apps/fixtures` as a Vercel project. The proof pages are raw deterministic route-handler responses so Next build IDs do not enter the candidate-body digest. The `/.well-known/cutover.json` endpoint returns 503 until its manifest variable is set.
+Deploy `apps/fixtures` as a Vercel project. The proof pages are raw deterministic route-handler responses so Next build IDs do not enter the candidate-body digest. The `/.well-known/spacly.json` endpoint returns 503 until its manifest variable is set.
 
 After the first fixture deployment, generate the manifest from fetched public response bytes. Repeat one `--route route_id=/path` per route that will be registered in the migration:
 
@@ -12,13 +12,13 @@ After the first fixture deployment, generate the manifest from fetched public re
 node scripts/live/build_manifest.mjs --origin https://YOUR-FIXTURE.vercel.app --release-ref DEPLOYED_GIT_COMMIT_SHA --route pricing=/cases/preserved
 ```
 
-The script fetches every page twice, refuses redirects or changing bytes, hashes the actual body, and prints the exact `CUTOVER_CANDIDATE_MANIFEST_JSON` value and canonical manifest digest. Set that value in the fixture project's Vercel environment, redeploy, then verify the published manifest and page digests:
+The script fetches every page twice, refuses redirects or changing bytes, hashes the actual body, and prints the exact `SPACLY_CANDIDATE_MANIFEST_JSON` value and canonical manifest digest. Set that value in the fixture project's Vercel environment, redeploy, then verify the published manifest and page digests:
 
 ```powershell
 node scripts/live/build_manifest.mjs --verify --origin https://YOUR-FIXTURE.vercel.app --expected-release-ref DEPLOYED_GIT_COMMIT_SHA
 ```
 
-For an authenticated baseline snapshot, use `/api/snapshot/<fixture>?route_id=<registered-id>&captured_at=<real-ISO-timestamp>` as both the snapshot URL and public artifact URL. It returns the contract's exact `cutover.baseline.v1` schema. The capture timestamp must be supplied by the live run; the endpoint does not invent one.
+For an authenticated baseline snapshot, use `/api/snapshot/<fixture>?route_id=<registered-id>&captured_at=<real-ISO-timestamp>` as both the snapshot URL and public artifact URL. It returns the contract's exact `spacly.baseline.v1` schema. The capture timestamp must be supplied by the live run; the endpoint does not invent one.
 
 ## Contract deployment and execution
 
@@ -28,7 +28,7 @@ The current `proof/live-plan.example.json` is only a schema/example smoke plan; 
 
 ## Vercel environment
 
-- `apps/web`: `NEXT_PUBLIC_CUTOVER_CONTRACT_ADDRESS` = the deployed contract address.
-- `apps/fixtures`: `CUTOVER_CANDIDATE_MANIFEST_JSON` = the generated one-line manifest JSON.
+- `apps/web`: `NEXT_PUBLIC_SPACLY_CONTRACT_ADDRESS` = the deployed contract address.
+- `apps/fixtures`: `SPACLY_CANDIDATE_MANIFEST_JSON` = the generated one-line manifest JSON.
 
 Studionet, chain ID, RPC and explorer are pinned in frontend source. No fixture or fake-chain fallback is used.

@@ -1,5 +1,5 @@
 {
-  "schema_version":"cutover.live-proof.v2",
+  "schema_version":"spacly.live-proof.v2",
   "network":"studionet",
   "chain_id":61999,
   "cases":[

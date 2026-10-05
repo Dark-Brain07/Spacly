@@ -227,7 +227,7 @@ def main():
     web_env_file = ROOT / "apps" / "web" / ".env.local"
     web_env_file.write_text(
         f"NEXT_PUBLIC_SPACLY_CONTRACT_ADDRESS={contract_address}\n"
-        f"NEXT_PUBLIC_CUTOVER_CONTRACT_ADDRESS={contract_address}\n",
+        f"NEXT_PUBLIC_SPACLY_CONTRACT_ADDRESS={contract_address}\n",
         encoding="utf-8",
     )
     print(f"Updated {web_env_file.relative_to(ROOT)} with live contract address.")

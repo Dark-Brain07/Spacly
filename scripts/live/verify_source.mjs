@@ -9,7 +9,7 @@ import { studionet } from "genlayer-js/chains";
 const args=process.argv.slice(2);
 function option(name,fallback){const i=args.indexOf(name);return i<0?fallback:args[i+1];}
 const address=option("--address","");
-const sourcePath=path.resolve(option("--source","contracts/cutover.py"));
+const sourcePath=path.resolve(option("--source","contracts/spacly.py"));
 const rpc=option("--rpc","https://studio.genlayer.com/api");
 const output=option("--write-deployed","");
 if(!/^0x[a-fA-F0-9]{40}$/.test(address))throw new Error("--address must be a 20-byte contract address");

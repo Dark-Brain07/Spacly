@@ -1,5 +1,5 @@
 {
-  "schema_version": "cutover.live-deployment.v1",
+  "schema_version": "spacly.live-deployment.v1",
   "recorded_at": "2026-09-30T08:47:30.299Z",
   "git_commit": "548cb04a79166a3fa59778c4214f7d3cc56b3059",
   "network": {
@@ -14,7 +14,7 @@
   "contract": {
     "address": "0xB8B2157c9d4f19c66e241178A63A89B13EAB3237",
     "explorer": "https://explorer-studio.genlayer.com",
-    "source_path": "contracts/cutover.py",
+    "source_path": "contracts/spacly.py",
     "source_sha256": "34018863567489cea352be045f16f6308b0a5c0ef8af668ad84551e10cf75834",
     "deployed_source_sha256": "34018863567489cea352be045f16f6308b0a5c0ef8af668ad84551e10cf75834",
     "exact_source_match": true,

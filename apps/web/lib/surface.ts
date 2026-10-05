@@ -4,7 +4,7 @@ export const WRITE_EXAMPLES:Record<string,unknown[]>={
   add_route:[1,"pricing","https://old.example.com/pricing","/pricing",JSON.stringify([{id:"pricing",question:"Is the published monthly commitment preserved?",allowed_changes:"Cosmetic layout and copy edits only."}])],
   freeze_route:[1,"pricing","https://proof.example/baseline.json","{}","0".repeat(64)],
   seal_baseline:[1],
-  set_candidate:[1,"https://candidate.example.com","https://candidate.example.com/.well-known/cutover.json","0".repeat(64)],
+  set_candidate:[1,"https://candidate.example.com","https://candidate.example.com/.well-known/spacly.json","0".repeat(64)],
   assess_route:[1,"pricing"],derive_candidate:[1],open_challenge:[1,"pricing","https://proof.example/challenge.json"],reassess_challenge:[1],authorize:[1],cancel_migration:[1],
 };
 export const WRITE_METHODS=Object.keys(surface.writes);

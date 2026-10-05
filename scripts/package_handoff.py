@@ -2,7 +2,7 @@ from pathlib import Path
 import zipfile
 
 root=Path(__file__).resolve().parents[1]
-out=root/"cutover-chatgpt-pro-handoff.zip"
+out=root/"spacly-chatgpt-pro-handoff.zip"
 exclude={".git","node_modules",".next","__pycache__",".pytest_cache","coverage",".venv","artifacts","dist-tmp"}
 
 with zipfile.ZipFile(out,"w",zipfile.ZIP_DEFLATED) as z:

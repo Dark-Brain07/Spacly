@@ -1,10 +1,10 @@
 # Consensus design and payload binding
 
-CUTOVER uses GenLayer consensus for baseline interpretation, candidate rule classification, and challenge relevance admission. Deterministic contract code owns identities, bounds, hashes, generations, route completeness, retry/challenge limits, state precedence, deadlines, evidence roots, and authorization. A validator that cannot independently reproduce and bind the leader's consequential result rejects the write.
+SPACLY uses GenLayer consensus for baseline interpretation, candidate rule classification, and challenge relevance admission. Deterministic contract code owns identities, bounds, hashes, generations, route completeness, retry/challenge limits, state precedence, deadlines, evidence roots, and authorization. A validator that cannot independently reproduce and bind the leader's consequential result rejects the write.
 
 ## Nondeterministic boundary audit
 
-`contracts/cutover.py` has four `run_nondet_unsafe` call sites. This table classifies every leader-returned field and the actual comparison performed by the validator. Compared fields use canonical JSON serialization, so a type-changing substitution such as `true` for `1` cannot pass Python's looser value equality.
+`contracts/spacly.py` has four `run_nondet_unsafe` call sites. This table classifies every leader-returned field and the actual comparison performed by the validator. Compared fields use canonical JSON serialization, so a type-changing substitution such as `true` for `1` cannot pass Python's looser value equality.
 
 | Path | Leader return fields | State / later effect | Validator recomputation and binding | Deliberately unbound fields | Direct Mode attack test |
 |---|---|---|---|---|---|

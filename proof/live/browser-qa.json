@@ -1,8 +1,8 @@
 {
-  "schema_version": "cutover.live-browser-qa.v1",
+  "schema_version": "spacly.live-browser-qa.v1",
   "recorded_date": "2026-09-30",
   "status": "PARTIAL",
-  "frontend_url": "https://cutover-kappa.vercel.app/",
+  "frontend_url": "https://spacly-kappa.vercel.app/",
   "browser": "Chrome with the user's injected EIP-1193 wallet",
   "connected_account": "0x7d1170bc98624f98183972fabd69418bb7d5d541",
   "connected_chain": 61999,
@@ -21,14 +21,14 @@
     },
     "migration_3_authorized": {
       "result": "PASS",
-      "url": "https://cutover-kappa.vercel.app/migrations/3",
+      "url": "https://spacly-kappa.vercel.app/migrations/3",
       "observed_state": "AUTHORIZED",
       "candidate_ref": "796473c3eda18701ca293cb1100b065652f1da9c",
       "routes": ["exact READY", "cosmetic READY"]
     },
     "migration_4_blocked": {
       "result": "PASS",
-      "url": "https://cutover-kappa.vercel.app/migrations/4",
+      "url": "https://spacly-kappa.vercel.app/migrations/4",
       "observed_state": "BLOCKED",
       "routes": ["pricing BLOCKED", "legal BLOCKED", "signup BLOCKED", "injection BLOCKED", "unrelated NOT ASSESSED"]
     },

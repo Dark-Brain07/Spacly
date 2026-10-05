@@ -13,14 +13,14 @@ type ContractWrite={address:`0x${string}`;functionName:string;args:unknown[];val
 type ReadClient={readContract:(request:Record<string,unknown>)=>Promise<unknown>};
 type WriteClient={writeContract:(request:ContractWrite)=>Promise<`0x${string}`>};
 
-export async function readCutover(functionName:string,args:unknown[]=[]):Promise<unknown>{
-  if(!isConfigured())throw new Error("CUTOVER contract not configured");
+export async function readSpacly(functionName:string,args:unknown[]=[]):Promise<unknown>{
+  if(!isConfigured())throw new Error("SPACLY contract not configured");
   const client=createClient({chain:studionet}) as unknown as ReadClient;
   return client.readContract({address:CONTRACT_ADDRESS as `0x${string}`,functionName,args,transactionHashVariant:TransactionHashVariant.LATEST_FINAL});
 }
 
-export async function writeCutover(account:`0x${string}`,provider:Eip1193Provider,functionName:string,args:unknown[]=[]):Promise<`0x${string}`>{
-  if(!isConfigured())throw new Error("CUTOVER contract not configured");
+export async function writeSpacly(account:`0x${string}`,provider:Eip1193Provider,functionName:string,args:unknown[]=[]):Promise<`0x${string}`>{
+  if(!isConfigured())throw new Error("SPACLY contract not configured");
 
   // genlayer-js@1.1.8 already routes eth_sendTransaction through the supplied
   // EIP-1193 provider. Network switching is owned by WalletSession so this path

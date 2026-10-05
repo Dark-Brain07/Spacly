@@ -1,0 +1,7 @@
+{
+  "name": "spacly-web",
+  "framework": "nextjs",
+  "outputDirectory": "apps/web/.next",
+  "buildCommand": "npm run build",
+  "installCommand": "npm install"
+}

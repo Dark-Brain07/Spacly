@@ -2,7 +2,7 @@ export type Migration={state:string;candidate_generation:number;candidate_ref:st
 export type Authorization={candidate_generation:number;candidate_ref:string;candidate_manifest_digest:string;evidence_root:string;authorization_digest:string};
 const sha=(v:string)=>/^[a-f0-9]{64}$/i.test(v);
 export function checkGate(m:Migration,a:Authorization,expected:string){
- if(m.state!=="AUTHORIZED")throw new Error(`CUTOVER state is ${m.state}, expected AUTHORIZED`);
+ if(m.state!=="AUTHORIZED")throw new Error(`SPACLY state is ${m.state}, expected AUTHORIZED`);
  if(a.candidate_generation!==m.candidate_generation)throw new Error("authorization generation is stale");
  if(m.assessed_generation!==m.candidate_generation)throw new Error("assessment generation is stale");
  if(a.candidate_ref!==m.candidate_ref)throw new Error("authorization ref does not match current candidate");

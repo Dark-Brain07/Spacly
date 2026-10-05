@@ -2,7 +2,7 @@ export const MAX_ORDINARY_ATTEMPTS=3;
 export const MAX_CHALLENGES_PER_GENERATION=3;
 
 export function manifestUrlForOrigin(origin:string){
-  return `${origin.replace(/\/+$/,'')}/.well-known/cutover.json`;
+  return `${origin.replace(/\/+$/,'')}/.well-known/spacly.json`;
 }
 
 export function isSafeCandidatePath(path:string){

@@ -1,6 +1,6 @@
 # Live proof plan and results
 
-This document separates proof on the revised source from the retained historical deployment. The revised contract is `0x2A19548ae8A86a6d678890095f9F25eddeC16DD3` on Studionet (`61999`), with source SHA-256 `13bfc90c1c2aad4ae09c591dbc72af1c063f43e0c71640e70c521b66ed867c79`. Deployment and source retrieval match are documented in [`proof/live/revised-deployment.json`](../proof/live/revised-deployment.json). The canonical frontend is [https://cutover-kappa.vercel.app/](https://cutover-kappa.vercel.app/); it has not yet been redeployed with the revised contract address.
+This document separates proof on the revised source from the retained historical deployment. The revised contract is `0x2A19548ae8A86a6d678890095f9F25eddeC16DD3` on Studionet (`61999`), with source SHA-256 `13bfc90c1c2aad4ae09c591dbc72af1c063f43e0c71640e70c521b66ed867c79`. Deployment and source retrieval match are documented in [`proof/live/revised-deployment.json`](../proof/live/revised-deployment.json). The canonical frontend is [https://spacly-kappa.vercel.app/](https://spacly-kappa.vercel.app/); it has not yet been redeployed with the revised contract address.
 
 ## Revised-source live evidence
 
@@ -24,14 +24,14 @@ The committed CI workflow now targets the revised deployment and will assert:
 2. migration 1 with an incorrect expected ref fails at the exact-ref guard;
 3. migration 2, whose finalized state is `INCONCLUSIVE`, fails at the authorization-state guard.
 
-The revised-source assertions passed in [GitHub Actions run 36769705489](https://github.com/Ifem1/cutover/actions/runs/36769705489), with the [live-gate job](https://github.com/Ifem1/cutover/actions/runs/36769705489/job/110073021673) confirming the exact-ref PASS and the two asserted FAIL cases. The full workflow run finished green, including package handoff. The prior [run 36753618050](https://github.com/Ifem1/cutover/actions/runs/36753618050) and its [live-gate job](https://github.com/Ifem1/cutover/actions/runs/36753618050/job/110018493960) used the previous contract and remain historical only.
+The revised-source assertions passed in [GitHub Actions run 36769705489](https://github.com/Dark-Brain07/spacly/actions/runs/36769705489), with the [live-gate job](https://github.com/Dark-Brain07/spacly/actions/runs/36769705489/job/110073021673) confirming the exact-ref PASS and the two asserted FAIL cases. The full workflow run finished green, including package handoff. The prior [run 36753618050](https://github.com/Dark-Brain07/spacly/actions/runs/36753618050) and its [live-gate job](https://github.com/Dark-Brain07/spacly/actions/runs/36753618050/job/110018493960) used the previous contract and remain historical only.
 
 ## Production frontend and wallet QA
 
 The canonical frontend currently renders migration records from the previous contract. It must be configured in Vercel with:
 
 ```text
-NEXT_PUBLIC_CUTOVER_CONTRACT_ADDRESS=0x2A19548ae8A86a6d678890095f9F25eddeC16DD3
+NEXT_PUBLIC_SPACLY_CONTRACT_ADDRESS=0x2A19548ae8A86a6d678890095f9F25eddeC16DD3
 ```
 
 Then redeploy the frontend and run [`docs/MANUAL_QA_RUNBOOK.md`](MANUAL_QA_RUNBOOK.md) with a real injected wallet. The revised contract has migrations 1–4, so the historical `/migrations/3` AUTHORIZED and `/migrations/4` BLOCKED views do not describe the new deployment: revised migration 1 is `AUTHORIZED`, and revised migrations 2–4 are `INCONCLUSIVE`. The historical browser report remains in [`proof/live/browser-qa.json`](../proof/live/browser-qa.json); current revised-pair browser limitations are in [`proof/live/revised-browser-qa.json`](../proof/live/revised-browser-qa.json).

@@ -5,18 +5,18 @@ on:
     branches: [main]
 
 jobs:
-  cutover:
+  spacly:
     runs-on: ubuntu-latest
     steps:
-      - name: Require exact CUTOVER authorization
-        uses: Ifem1/cutover/packages/gate@main
+      - name: Require exact SPACLY authorization
+        uses: Dark-Brain07/spacly/packages/gate@main
         with:
-          contract-address: ${{ vars.CUTOVER_CONTRACT_ADDRESS }}
-          migration-id: ${{ vars.CUTOVER_MIGRATION_ID }}
+          contract-address: ${{ vars.SPACLY_CONTRACT_ADDRESS }}
+          migration-id: ${{ vars.SPACLY_MIGRATION_ID }}
           expected-candidate-ref: ${{ github.sha }}
 
   deploy:
-    needs: cutover
+    needs: spacly
     runs-on: ubuntu-latest
     steps:
       - run: echo "Replace with the real production deployment job."

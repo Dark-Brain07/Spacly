@@ -1,9 +1,9 @@
 {
-  "schema_version": "cutover.live-browser-qa.v2",
+  "schema_version": "spacly.live-browser-qa.v2",
   "recorded_date": "2026-10-01",
   "manual_qa_date": "2026-09-30",
   "status": "COMPLETED_MANUAL_QA_WITH_OPTIONAL_GAPS",
-  "frontend_url": "https://cutover-kappa.vercel.app/",
+  "frontend_url": "https://spacly-kappa.vercel.app/",
   "contract_address": "0x2A19548ae8A86a6d678890095f9F25eddeC16DD3",
   "chain_id": 61999,
   "frontend_fix_commit": "2a7599af90d2533d848e06887c3917681847552a",

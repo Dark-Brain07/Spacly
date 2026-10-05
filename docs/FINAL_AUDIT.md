@@ -4,7 +4,7 @@ Audit scope: revised-source deployment/live evidence, production frontend/wallet
 
 ## Contract identity and deployment
 
-- Tracked contract source: `contracts/cutover.py`, SHA-256 `13bfc90c1c2aad4ae09c591dbc72af1c063f43e0c71640e70c521b66ed867c79`.
+- Tracked contract source: `contracts/spacly.py`, SHA-256 `13bfc90c1c2aad4ae09c591dbc72af1c063f43e0c71640e70c521b66ed867c79`.
 - Contract Git blob: `7ec2ac24b38653e0588f6ce699ee5d6282f473b6`.
 - Revised Studionet contract: `0x2A19548ae8A86a6d678890095f9F25eddeC16DD3`, chain `61999`.
 - Deployment transaction: `0xc95764f9ac1e81b28941261662c46aae0a49cae14c0719e6059106190b5994de`; observed `FINALIZED`, `MAJORITY_AGREE`, leader `SUCCESS`.
@@ -12,7 +12,7 @@ Audit scope: revised-source deployment/live evidence, production frontend/wallet
 - Caveat: the deployment's ACCEPTED-labeled receipt poll first returned after finalization; a separate deployment ACCEPTED observation is not claimed.
 - Historical address `0xB8B2157c9d4f19c66e241178A63A89B13EAB3237` and SHA `34018863567489cea352be045f16f6308b0a5c0ef8af668ad84551e10cf75834` remain historical-only evidence.
 
-The evidence/documentation cleanup does not modify `contracts/cutover.py` and does not create or redeploy a contract.
+The evidence/documentation cleanup does not modify `contracts/spacly.py` and does not create or redeploy a contract.
 
 ## Nondeterministic payload audit
 
@@ -31,7 +31,7 @@ The tracked record [`revised-live-cases.json`](../proof/live/revised-live-cases.
 
 ## Production frontend and manual wallet QA
 
-The canonical frontend is `https://cutover-kappa.vercel.app/` and now targets the revised contract `0x2A19548ae8A86a6d678890095f9F25eddeC16DD3` on Studionet 61999.
+The canonical frontend is `https://spacly-kappa.vercel.app/` and now targets the revised contract `0x2A19548ae8A86a6d678890095f9F25eddeC16DD3` on Studionet 61999.
 
 Manual production QA with a real injected wallet verified:
 
@@ -57,7 +57,7 @@ Live account-change QA and live pending-transaction refresh recovery were **not 
 
 ## Final validation and CI
 
-For commit `2a7599af90d2533d848e06887c3917681847552a`, final CI [run 36786339583](https://github.com/Ifem1/cutover/actions/runs/36786339583) completed successfully.
+For commit `2a7599af90d2533d848e06887c3917681847552a`, final CI [run 36786339583](https://github.com/Dark-Brain07/spacly/actions/runs/36786339583) completed successfully.
 
 Verified totals from that run:
 
@@ -81,7 +81,7 @@ The exact command `npm audit --omit=dev --json` was run on a temporary **unmerge
 - `@actions/http-client@2.2.3` — transitive production dependency of `@actions/core` in the GitHub gate, reported moderate through Undici.
 - `undici@5.29.0` — transitive production dependency of `@actions/http-client` in the GitHub gate, reported high.
 
-The Next/PostCSS findings belong to the production web/fixture dependency graph; the Actions/Undici findings belong to the GitHub gate dependency graph rather than the Vercel UI. This cleanup does not claim exploitability or non-exploitability for CUTOVER-specific paths. No automatic fix or breaking upgrade was applied. The audit offered a Next remediation through `16.3.8`, which is a SemVer-major upgrade and is intentionally outside this evidence-only task.
+The Next/PostCSS findings belong to the production web/fixture dependency graph; the Actions/Undici findings belong to the GitHub gate dependency graph rather than the Vercel UI. This cleanup does not claim exploitability or non-exploitability for SPACLY-specific paths. No automatic fix or breaking upgrade was applied. The audit offered a Next remediation through `16.3.8`, which is a SemVer-major upgrade and is intentionally outside this evidence-only task.
 
 ## Remaining optional evidence gaps
 

@@ -1,5 +1,5 @@
 {
-  "schema_version": "cutover.live-case.v1",
+  "schema_version": "spacly.live-case.v1",
   "case_id": "positive-cycle-3",
   "recorded_at": "2026-09-30T10:56:54Z",
   "network": {
@@ -11,7 +11,7 @@
   "contract_source_sha256": "34018863567489cea352be045f16f6308b0a5c0ef8af668ad84551e10cf75834",
   "source_commit": "548cb04a79166a3fa59778c4214f7d3cc56b3059",
   "candidate_ref": "796473c3eda18701ca293cb1100b065652f1da9c",
-  "candidate_origin": "https://cutover-fixtures.vercel.app",
+  "candidate_origin": "https://spacly-fixtures.vercel.app",
   "manifest_digest": "d033ea262585b556462e5d387655b4dd809626280a40dfefe680763ac17630d5",
   "migration_id": 3,
   "owner": "0x77e2EdBb43277bf772e207C517dde731935ffbA5",
@@ -30,7 +30,7 @@
   "challenge": {
     "challenger": "0x6b476bf35c4968f3f1775c0ca2110591b4b5fcbe",
     "route_id": "exact",
-    "evidence_url": "https://cutover-fixtures.vercel.app/baseline/preserved",
+    "evidence_url": "https://spacly-fixtures.vercel.app/baseline/preserved",
     "evidence_sha256": "6274e846191a6edf860af8983fb424c8c35f7d4de3961e2190b3e36f5b894afc",
     "open_tx": "0x44dc6ab3fdb289a3718a7633a53dd37767ed1a89d9fc8913b1c9ec61f19e6c40",
     "reassess_tx": "0xe2f8fa20d109d89bd70275a60ec8ec97495669e5f1e200c42451b41e315bc684",

@@ -28,7 +28,7 @@ const mutants=[
  ["tx","studio_success_unrecognized","if(studioExecution===\"SUCCESS\")return \"success\";","if(studioExecution===\"__MUTATED_SUCCESS__\")return \"success\";"],
  ["tx","studio_error_unrecognized","if(studioExecution===\"ERROR\")return \"failure\";","if(studioExecution===\"__MUTATED_ERROR__\")return \"failure\";"],
 ];
-function test(){return spawnSync("npm",["-w","@cutover/web","run","test","--","tests/policy.test.ts","tests/workflow.test.ts","tests/tx.test.ts"],{cwd:root,stdio:"ignore",shell:process.platform==="win32"}).status;}
+function test(){return spawnSync("npm",["-w","@spacly/web","run","test","--","tests/policy.test.ts","tests/workflow.test.ts","tests/tx.test.ts"],{cwd:root,stdio:"ignore",shell:process.platform==="win32"}).status;}
 if(test()!==0){console.error("UNMODIFIED FRONTEND CONTROL FAILED");process.exit(2)}console.log("UNMODIFIED FRONTEND CONTROL PASS");
 const bad=[];try{for(const [file,name,from,to] of mutants){const src=original[file];if(src.split(from).length!==2){bad.push(`${name}:pattern-missing-or-ambiguous`);continue}fs.writeFileSync(files[file],src.replace(from,to));if(test()===0)bad.push(`${name}:survived`);fs.writeFileSync(files[file],src);}}finally{for(const [k,p] of Object.entries(files))fs.writeFileSync(p,original[k])}
 if(bad.length){console.error(bad.join("\n"));process.exit(1)}console.log(`Killed ${mutants.length}/${mutants.length} frontend workflow mutants`);
